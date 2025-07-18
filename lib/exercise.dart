@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 class ExerciseCard extends StatefulWidget {
   final String name;
+  final String pic;
   final List<String> sets;
 
-  const ExerciseCard({super.key, required this.name, required this.sets});
+  const ExerciseCard({super.key, required this.name, required this.sets}) : pic = 'images/$name.jpg';
 
   @override
   State<ExerciseCard> createState() => _ExerciseCardState();
@@ -12,6 +13,11 @@ class ExerciseCard extends StatefulWidget {
 
 class _ExerciseCardState extends State<ExerciseCard> {
   late final List<TextEditingController> _controllers;
+
+  String _getName() {
+    String name = widget.name;
+    return name[0].toUpperCase() + name.substring(1);
+  }
 
   @override
   void initState() {
@@ -44,15 +50,15 @@ class _ExerciseCardState extends State<ExerciseCard> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.network(
-                  "https://picsum.photos/250?image=9",
+                Image.asset(
+                  widget.pic,
                   height: 100,
                   width: 140,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                 ),
                 const SizedBox(width: 16),
                 Text(
-                  widget.name,
+                  _getName(),
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
