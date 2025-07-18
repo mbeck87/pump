@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            manager.getCard("Test"),
+            manager.getCard("bankdrücken"),
           ],
         ),
       ),
