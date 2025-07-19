@@ -4,8 +4,9 @@ class ExerciseCard extends StatefulWidget {
   final String name;
   final String pic;
   final List<String> sets;
+  final void Function(String name, List<String> sets)? onApply;
 
-  const ExerciseCard({super.key, required this.name, required this.sets}) : pic = 'images/$name.jpg';
+  const ExerciseCard({super.key, required this.name, required this.sets, this.onApply}) : pic = 'images/$name.jpg';
 
   @override
   State<ExerciseCard> createState() => _ExerciseCardState();
@@ -17,6 +18,12 @@ class _ExerciseCardState extends State<ExerciseCard> {
   String _getName() {
     String name = widget.name;
     return name[0].toUpperCase() + name.substring(1);
+  }
+
+  void _setSets() {
+    for (int i = 0; i < widget.sets.length; i++) {
+      widget.sets[i] = _controllers[i].text;
+    }
   }
 
   @override
@@ -57,14 +64,51 @@ class _ExerciseCardState extends State<ExerciseCard> {
                   fit: BoxFit.fill,
                 ),
                 const SizedBox(width: 16),
-                Text(
-                  _getName(),
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontStyle: FontStyle.normal,
-                    fontSize: 14,
-                    color: Color(0xff000000),
-                  ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(
+                      _getName(),
+                      textAlign: TextAlign.start,
+                      overflow: TextOverflow.clip,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal,
+                        fontSize: 14,
+                        color: Color(0xff000000),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                      width: 16,
+                    ),
+                    MaterialButton(
+                      onPressed: () {
+                        _setSets();
+                        widget.onApply!(widget.name, widget.sets);
+                      },
+                      color: Color(0xffffffff),
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.zero,
+                        side: BorderSide(color: Color(0xff808080), width: 1),
+                      ),
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        "OK",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.normal,
+                        ),
+                      ),
+                      textColor: Color(0xff000000),
+                      height: 20,
+                      minWidth: 100,
+                    ),
+                  ],
                 ),
               ],
             ),

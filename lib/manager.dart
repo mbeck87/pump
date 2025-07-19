@@ -1,4 +1,7 @@
 import 'exercise.dart';
+import 'dart:io';
+import 'dart:convert';
+
 
 class Manager {
   static final Manager _instance = Manager._internal();
@@ -11,7 +14,7 @@ class Manager {
 
   ExerciseCard getCard(String name) {
     List<String> sets = getSets(name);
-    ExerciseCard card = ExerciseCard(name: name, sets: sets);
+    ExerciseCard card = ExerciseCard(name: name, sets: sets, onApply: writeValues);
     return card;
   }
 
@@ -23,5 +26,9 @@ class Manager {
     list.add("80");
     list.add("100");
     return list;
+  }
+
+  void writeValues(String name, List<String> values) {
+    print(name);
   }
 }

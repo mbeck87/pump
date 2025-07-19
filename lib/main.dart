@@ -31,9 +31,9 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox(height: 100),
+            const SizedBox(height: 20),
             const Text(
-              "Dies ist ein Test",
+              "Wochentag",
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.black,
