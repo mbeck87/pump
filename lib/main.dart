@@ -34,8 +34,8 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const SizedBox(height: 20),
-            const Text(
-              "Wochentag",
+            Text(
+              manager.getDay(),
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.black,

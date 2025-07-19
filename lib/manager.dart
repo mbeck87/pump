@@ -38,4 +38,18 @@ class Manager {
   void writeValues(String name, List<String> values) {
     print(name);
   }
+
+  String getDay() {
+    const days = [
+      'Montag',
+      'Dienstag',
+      'Mittwoch',
+      'Donnerstag',
+      'Freitag',
+      'Samstag',
+      'Sonntag',
+    ];
+    int today = DateTime.now().weekday;
+    return days[today - 1];
+  }
 }
