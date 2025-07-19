@@ -5,7 +5,7 @@ late final Manager manager;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  manager = await manager.init();
+  manager = await Manager.create();
   runApp(const MyApp());
 }
 
