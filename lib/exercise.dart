@@ -6,6 +6,7 @@ class ExerciseCard extends StatefulWidget {
   final List<String> sets;
   final void Function(String name, List<String> sets)? onApply;
 
+
   const ExerciseCard({super.key, required this.name, required this.sets, this.onApply}) : pic = 'images/$name.jpg';
 
   @override

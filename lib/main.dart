@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'manager.dart';
 
-final Manager manager = Manager();
+late final Manager manager;
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  manager = await manager.init();
   runApp(const MyApp());
 }
 

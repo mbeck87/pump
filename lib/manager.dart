@@ -1,14 +1,21 @@
 import 'exercise.dart';
 import 'dart:io';
 import 'dart:convert';
+import 'package:path_provider/path_provider.dart';
 
 
 class Manager {
   static final Manager _instance = Manager._internal();
+  late final Directory? _dir;
 
   Manager._internal();
 
   factory Manager() {
+    return _instance;
+  }
+
+  static Future<Manager> create() async {
+    _instance._dir ??= await getApplicationSupportDirectory();
     return _instance;
   }
 
