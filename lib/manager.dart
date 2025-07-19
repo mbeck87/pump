@@ -21,7 +21,7 @@ class Manager {
 
   ExerciseCard getCard(String name) {
     List<String> sets = getSets(name);
-    ExerciseCard card = ExerciseCard(name: name, sets: sets, onApply: writeValues);
+    ExerciseCard card = ExerciseCard(name: name, sets: sets, onApply: setSets);
     return card;
   }
 
@@ -35,7 +35,7 @@ class Manager {
     return list;
   }
 
-  void writeValues(String name, List<String> values) {
+  void setSets(String name, List<String> values) {
     print(name);
   }
 
