@@ -6,7 +6,7 @@ import 'package:path_provider/path_provider.dart';
 
 class Manager {
   static final Manager _instance = Manager._internal();
-  late final Directory? _dir;
+  late final Directory _dir;
 
   Manager._internal();
 
@@ -14,9 +14,8 @@ class Manager {
     return _instance;
   }
 
-  static Future<Manager> create() async {
-    _instance._dir ??= await getApplicationSupportDirectory();
-    return _instance;
+  Future<void> init() async {
+    _dir = await getApplicationSupportDirectory();
   }
 
   ExerciseCard getCard(String name) {

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'manager.dart';
 
-late final Manager manager;
+late final Manager manager = Manager();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  manager = await Manager.create();
+  await manager.init();
   runApp(const MyApp());
 }
 
@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             const SizedBox(height: 20),
             Text(
-              manager.getDay(),
+              "blaaaaaaa",
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.black,
