@@ -25,7 +25,7 @@ class Manager {
     if (!file.existsSync()) {
       Map<String, dynamic> data = {
         "Montag": {
-          "Bankdrücken":         ["0", "100", "0", "0", "0"],
+          "Bankdrücken":         ["0", "0", "0", "0", "0"],
           "Butterfly":           ["0", "0", "0", "0", "0"],
           "Schrägbankdrücken":   ["0", "0", "0", "0", "0"],
           "Sitzend bankdrücken": ["0", "0", "0", "0", "0"],
