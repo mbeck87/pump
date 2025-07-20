@@ -91,7 +91,10 @@ class _ExerciseCardState extends State<ExerciseCard> {
                     const SizedBox(height: 5),
                     SizedBox(
                       width: 100,
-                      child: OutlinedButton(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          elevation: 6, // z. B. mehr Schatten
+                        ),
                         onPressed: () {
                           _setSets();
                           widget.onApply?.call(widget.name, widget.sets);
@@ -131,7 +134,7 @@ class _ExerciseCardState extends State<ExerciseCard> {
                           ),
                         ),
                         filled: true,
-                        fillColor: colorScheme.surfaceVariant,
+                        fillColor: colorScheme.surfaceContainerHighest,
                         contentPadding: const EdgeInsets.symmetric(
                           vertical: 8,
                           horizontal: 12,

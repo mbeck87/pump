@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
               manager.getDay(),
               style: TextStyle(
                 fontSize: 18,
-                color: Theme.of(context).colorScheme.onBackground,
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
             manager.getCard("bankdrücken"),
