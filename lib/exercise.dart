@@ -85,29 +85,29 @@ class _ExerciseCardState extends State<ExerciseCard> {
                       height: 5,
                       width: 16,
                     ),
-                    MaterialButton(
+                    OutlinedButton(
                       onPressed: () {
                         _setSets();
                         widget.onApply!(widget.name, widget.sets);
                       },
-                      color: Color(0xffffffff),
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.zero,
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor: Color(0xffffffff),
                         side: BorderSide(color: Color(0xff808080), width: 1),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.zero,
+                        ),
+                        padding: EdgeInsets.all(10),
+                        minimumSize: Size(100, 20),
                       ),
-                      padding: EdgeInsets.all(10),
                       child: Text(
                         "OK",
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
                           fontStyle: FontStyle.normal,
+                          color: Color(0xff000000),
                         ),
                       ),
-                      textColor: Color(0xff000000),
-                      height: 20,
-                      minWidth: 100,
                     ),
                   ],
                 ),
@@ -152,12 +152,6 @@ class _ExerciseCardState extends State<ExerciseCard> {
                             color: Color(0xff000000),
                             width: 1,
                           ),
-                        ),
-                        hintStyle: const TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.normal,
-                          fontSize: 14,
-                          color: Color(0xff000000),
                         ),
                         filled: true,
                         fillColor: const Color(0xfff2f2f3),
