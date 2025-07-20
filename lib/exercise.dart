@@ -6,8 +6,12 @@ class ExerciseCard extends StatefulWidget {
   final List<String> sets;
   final void Function(String name, List<String> sets)? onApply;
 
-
-  const ExerciseCard({super.key, required this.name, required this.sets, this.onApply}) : pic = 'images/$name.jpg';
+  const ExerciseCard({
+    super.key,
+    required this.name,
+    required this.sets,
+    this.onApply,
+  }) : pic = 'images/$name.jpg';
 
   @override
   State<ExerciseCard> createState() => _ExerciseCardState();
@@ -32,7 +36,7 @@ class _ExerciseCardState extends State<ExerciseCard> {
     super.initState();
     _controllers = List.generate(
       5,
-          (index) => TextEditingController(
+      (index) => TextEditingController(
         text: index < widget.sets.length ? widget.sets[index] : '',
       ),
     );
@@ -40,14 +44,17 @@ class _ExerciseCardState extends State<ExerciseCard> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
     return Card(
-      margin: const EdgeInsets.all(4),
-      color: const Color(0xffe0e0e0),
-      shadowColor: const Color(0xff000000),
+      margin: const EdgeInsets.all(8),
+      color: colorScheme.surface,
+      shadowColor: colorScheme.shadow,
       elevation: 1,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(4.0),
-        side: const BorderSide(color: Color(0x4d9e9e9e), width: 1),
+        borderRadius: BorderRadius.circular(12.0),
+        side: BorderSide(color: colorScheme.outline, width: 1),
       ),
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -74,38 +81,26 @@ class _ExerciseCardState extends State<ExerciseCard> {
                       _getName(),
                       textAlign: TextAlign.start,
                       overflow: TextOverflow.clip,
-                      style: TextStyle(
+                      style: textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.normal,
-                        fontSize: 14,
-                        color: Color(0xff000000),
+                        fontSize: 18,
+                        color: colorScheme.onSurface,
                       ),
                     ),
+                    const SizedBox(height: 5),
                     SizedBox(
-                      height: 5,
-                      width: 16,
-                    ),
-                    OutlinedButton(
-                      onPressed: () {
-                        _setSets();
-                        widget.onApply!(widget.name, widget.sets);
-                      },
-                      style: OutlinedButton.styleFrom(
-                        backgroundColor: Color(0xffffffff),
-                        side: BorderSide(color: Color(0xff808080), width: 1),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.zero,
-                        ),
-                        padding: EdgeInsets.all(10),
-                        minimumSize: Size(100, 20),
-                      ),
-                      child: Text(
-                        "OK",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.normal,
-                          color: Color(0xff000000),
+                      width: 100,
+                      child: OutlinedButton(
+                        onPressed: () {
+                          _setSets();
+                          widget.onApply?.call(widget.name, widget.sets);
+                        },
+                        child: Text(
+                          "OK",
+                          style: textTheme.labelLarge?.copyWith(
+                            color: colorScheme.primary,
+                          ),
                         ),
                       ),
                     ),
@@ -122,40 +117,21 @@ class _ExerciseCardState extends State<ExerciseCard> {
                     padding: const EdgeInsets.symmetric(horizontal: 4),
                     child: TextField(
                       controller: _controllers[index],
-                      obscureText: false,
                       textAlign: TextAlign.start,
                       maxLines: 1,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
-                        fontSize: 14,
-                        color: Color(0xff000000),
+                      style: textTheme.bodyMedium?.copyWith(
+                        color: colorScheme.onSurface,
                       ),
                       decoration: InputDecoration(
-                        disabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4.0),
-                          borderSide: const BorderSide(
-                            color: Color(0xff000000),
-                            width: 1,
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4.0),
-                          borderSide: const BorderSide(
-                            color: Color(0xff000000),
-                            width: 1,
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4.0),
-                          borderSide: const BorderSide(
-                            color: Color(0xff000000),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                          borderSide: BorderSide(
+                            color: colorScheme.outline,
                             width: 1,
                           ),
                         ),
                         filled: true,
-                        fillColor: const Color(0xfff2f2f3),
-                        isDense: false,
+                        fillColor: colorScheme.surfaceVariant,
                         contentPadding: const EdgeInsets.symmetric(
                           vertical: 8,
                           horizontal: 12,
