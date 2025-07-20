@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'manager.dart';
+import 'exercise.dart';
 
 late final Manager manager = Manager();
 
@@ -39,6 +40,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // String day = manager.getDay();
+    String day = "Montag";
+    List<ExerciseCard>? exercises = manager.getExercises(day);
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -46,13 +51,22 @@ class HomeScreen extends StatelessWidget {
           children: [
             const SizedBox(height: 20),
             Text(
-              manager.getDay(),
+              day,
               style: TextStyle(
                 fontSize: 18,
                 color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
-            manager.getCard("bankdrücken"),
+            if (exercises == null || exercises.isEmpty)
+              Text(
+                "RESTDAY",
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
+              )
+            else
+              ...exercises,
           ],
         ),
       ),

@@ -66,7 +66,7 @@ class _ExerciseCardState extends State<ExerciseCard> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
-                  widget.pic,
+                  widget.pic.toLowerCase(),
                   height: 100,
                   width: 140,
                   fit: BoxFit.fill,

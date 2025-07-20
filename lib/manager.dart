@@ -7,6 +7,7 @@ import 'package:path_provider/path_provider.dart';
 class Manager {
   static final Manager _instance = Manager._internal();
   late final Directory _dir;
+  late Map<String, dynamic> _data;
 
   Manager._internal();
 
@@ -16,10 +17,32 @@ class Manager {
 
   Future<void> init() async {
     _dir = await getApplicationSupportDirectory();
+    _initJson();
   }
 
-  ExerciseCard getCard(String name) {
-    List<String> sets = getSets(name);
+  void _initJson() {
+    File file = File("${_dir.path}/data.json");
+    if (!file.existsSync()) {
+      Map<String, dynamic> data = {
+        "Montag": {
+          "Bankdrücken":         ["0", "0", "0", "0", "0"],
+          "Butterfly":           ["0", "0", "0", "0", "0"],
+          "Schrägbankdrücken":   ["0", "0", "0", "0", "0"],
+          "Sitzend bankdrücken": ["0", "0", "0", "0", "0"],
+          "Kabelzug":            ["0", "0", "0", "0", "0"],
+        }
+      };
+      file.writeAsStringSync(jsonEncode(data));
+    }
+    _refreshJson();
+  }
+
+  void _refreshJson() {
+    File file = File("${_dir.path}/data.json");
+    _data = jsonDecode(file.readAsStringSync());
+  }
+
+  ExerciseCard _getCard(String name, List<String> sets) {
     ExerciseCard card = ExerciseCard(name: name, sets: sets, onApply: setSets);
     return card;
   }
@@ -50,5 +73,18 @@ class Manager {
     ];
     int today = DateTime.now().weekday;
     return days[today - 1];
+  }
+
+  List<ExerciseCard>? getExercises(String day) {
+    final Map<String, dynamic>? dayEx = _data[day];
+    final List<ExerciseCard> exercises = [];
+
+    if(dayEx == null) return null;
+    for (String name in dayEx.keys) {
+      final List<String> sets = List<String>.from(dayEx[name]);
+      final ExerciseCard card = _getCard(name, sets);
+      exercises.add(card);
+    }
+    return exercises;
   }
 }
