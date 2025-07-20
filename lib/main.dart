@@ -46,28 +46,30 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const SizedBox(height: 20),
-            Text(
-              day,
-              style: TextStyle(
-                fontSize: 18,
-                color: Theme.of(context).colorScheme.onSurface,
-              ),
-            ),
-            if (exercises == null || exercises.isEmpty)
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
               Text(
-                "RESTDAY",
+                day,
                 style: TextStyle(
                   fontSize: 18,
                   color: Theme.of(context).colorScheme.onSurface,
                 ),
-              )
-            else
-              ...exercises,
-          ],
+              ),
+              if (exercises == null || exercises.isEmpty)
+                Text(
+                  "RESTDAY",
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+                )
+              else
+                ...exercises,
+            ],
+          ),
         ),
       ),
     );

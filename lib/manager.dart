@@ -25,7 +25,7 @@ class Manager {
     if (!file.existsSync()) {
       Map<String, dynamic> data = {
         "Montag": {
-          "Bankdrücken":         ["0", "0", "0", "0", "0"],
+          "Bankdrücken":         ["0", "100", "0", "0", "0"],
           "Butterfly":           ["0", "0", "0", "0", "0"],
           "Schrägbankdrücken":   ["0", "0", "0", "0", "0"],
           "Sitzend bankdrücken": ["0", "0", "0", "0", "0"],
@@ -45,16 +45,6 @@ class Manager {
   ExerciseCard _getCard(String name, List<String> sets) {
     ExerciseCard card = ExerciseCard(name: name, sets: sets, onApply: setSets);
     return card;
-  }
-
-  List<String> getSets(String name) {
-    List<String> list = [];
-    list.add("50");
-    list.add("60");
-    list.add("70");
-    list.add("80");
-    list.add("100");
-    return list;
   }
 
   void setSets(String name, List<String> values) {
