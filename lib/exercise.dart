@@ -11,7 +11,7 @@ class ExerciseCard extends StatefulWidget {
     required this.name,
     required this.sets,
     this.onApply,
-  }) : pic = 'images/$name.jpg';
+  }) : pic = 'images/$name.png';
 
   @override
   State<ExerciseCard> createState() => _ExerciseCardState();

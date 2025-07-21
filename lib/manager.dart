@@ -32,8 +32,8 @@ class Manager {
           "Bankdrücken":         ["0", "0", "0", "0", "0"],
           "Butterfly":           ["0", "0", "0", "0", "0"],
           "Schrägbankdrücken":   ["0", "0", "0", "0", "0"],
-          "Sitzend bankdrücken": ["0", "0", "0", "0", "0"],
-          "Kabelzug":            ["0", "0", "0", "0", "0"],
+          "Sitzend Bankdrücken": ["0", "0", "0", "0", "0"],
+          "Kabelzug Butterflys": ["0", "0", "0", "0", "0"],
         }
       };
       _file.writeAsStringSync(jsonEncode(data));
