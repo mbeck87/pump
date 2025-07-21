@@ -68,7 +68,7 @@ class _ExerciseCardState extends State<ExerciseCard> {
                 Image.asset(
                   widget.pic.toLowerCase(),
                   height: 100,
-                  width: 140,
+                  width: 100,
                   fit: BoxFit.fill,
                 ),
                 const SizedBox(width: 16),
