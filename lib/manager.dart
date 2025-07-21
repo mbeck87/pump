@@ -2,6 +2,7 @@ import 'exercise.dart';
 import 'dart:io';
 import 'dart:convert';
 import 'package:path_provider/path_provider.dart';
+import 'day.dart';
 
 
 class Manager {
@@ -51,7 +52,7 @@ class Manager {
     print(name);
   }
 
-  String getDay() {
+  String getDayName() {
     const days = [
       'Montag',
       'Dienstag',
@@ -65,16 +66,17 @@ class Manager {
     return days[today - 1];
   }
 
-  List<ExerciseCard>? getExercises(String day) {
+  Day? getDayLayout(String day) {
     final Map<String, dynamic>? dayEx = _data[day];
     final List<ExerciseCard> exercises = [];
 
-    if(dayEx == null) return null;
+    if (dayEx == null) return null;
     for (String name in dayEx.keys) {
       final List<String> sets = List<String>.from(dayEx[name]);
       final ExerciseCard card = _getCard(name, sets);
       exercises.add(card);
     }
-    return exercises;
+    Day dayLayout = Day(exercises: exercises);
+    return dayLayout;
   }
 }

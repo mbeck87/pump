@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'manager.dart';
-import 'exercise.dart';
+import 'day.dart';
 
 late final Manager manager = Manager();
 
@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // String day = manager.getDay();
     String day = "Montag";
-    List<ExerciseCard>? exercises = manager.getExercises(day);
+    Day? dayLayout = manager.getDayLayout(day);
 
     return Scaffold(
       body: Center(
@@ -58,7 +58,7 @@ class HomeScreen extends StatelessWidget {
                   color: Theme.of(context).colorScheme.onSurface,
                 ),
               ),
-              if (exercises == null || exercises.isEmpty)
+              if (dayLayout == null)
                 Text(
                   "RESTDAY",
                   style: TextStyle(
@@ -67,7 +67,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 )
               else
-                ...exercises,
+                dayLayout,
             ],
           ),
         ),
