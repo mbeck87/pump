@@ -26,8 +26,7 @@ class Manager {
   }
 
   void _initJson() {
-    File file = File("${_dir.path}/data.json");
-    if (!file.existsSync()) {
+    if (!_file.existsSync()) {
       Map<String, dynamic> data = {
         "Montag": {
           "Bankdrücken":         ["0", "0", "0", "0", "0"],
@@ -37,7 +36,7 @@ class Manager {
           "Kabelzug":            ["0", "0", "0", "0", "0"],
         }
       };
-      file.writeAsStringSync(jsonEncode(data));
+      _file.writeAsStringSync(jsonEncode(data));
     }
     _refreshJson();
   }
