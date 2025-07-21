@@ -4,7 +4,7 @@ class ExerciseCard extends StatefulWidget {
   final String name;
   final String pic;
   final List<String> sets;
-  final void Function(String name, List<String> sets)? onApply;
+  final bool Function(String name, List<String> sets)? onApply;
 
   const ExerciseCard({
     super.key,
@@ -93,11 +93,25 @@ class _ExerciseCardState extends State<ExerciseCard> {
                       width: 100,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          elevation: 6, // z. B. mehr Schatten
+                          elevation: 6,
                         ),
                         onPressed: () {
                           _setSets();
-                          widget.onApply?.call(widget.name, widget.sets);
+                          final bool confirm = widget.onApply?.call(widget.name, widget.sets) ?? false;
+                          if (confirm) {
+                            showDialog(
+                              context: context,
+                              builder: (_) => AlertDialog(
+                                content: Text('Erfolgreich gespeichert!'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: Text('OK'),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
                         },
                         child: Text(
                           "OK",

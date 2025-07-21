@@ -2,13 +2,15 @@ import 'exercise.dart';
 import 'dart:io';
 import 'dart:convert';
 import 'package:path_provider/path_provider.dart';
-import 'day.dart';
+import 'dayLayout.dart';
 
 
 class Manager {
   static final Manager _instance = Manager._internal();
   late final Directory _dir;
+  late File _file;
   late Map<String, dynamic> _data;
+  late String _day;
 
   Manager._internal();
 
@@ -18,7 +20,9 @@ class Manager {
 
   Future<void> init() async {
     _dir = await getApplicationSupportDirectory();
+    _file = File("${_dir.path}/data.json");
     _initJson();
+    _day = setDayName();
   }
 
   void _initJson() {
@@ -39,8 +43,7 @@ class Manager {
   }
 
   void _refreshJson() {
-    File file = File("${_dir.path}/data.json");
-    _data = jsonDecode(file.readAsStringSync());
+    _data = jsonDecode(_file.readAsStringSync());
   }
 
   ExerciseCard _getCard(String name, List<String> sets) {
@@ -48,11 +51,15 @@ class Manager {
     return card;
   }
 
-  void setSets(String name, List<String> values) {
-    print(name);
+  bool setSets(String name, List<String> values) {
+    for(int i = 0; i < values.length; i++) {
+      _data[_day][name][i] = values[i];
+    }
+    _file.writeAsStringSync(jsonEncode(_data));
+    return true;
   }
 
-  String getDayName() {
+  String setDayName() {
     const days = [
       'Montag',
       'Dienstag',
@@ -64,6 +71,10 @@ class Manager {
     ];
     int today = DateTime.now().weekday;
     return days[today - 1];
+  }
+
+  String getDayName() {
+    return _day;
   }
 
   Day? getDayLayout(String day) {

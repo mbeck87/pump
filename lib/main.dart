@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'manager.dart';
-import 'day.dart';
+import 'dayLayout.dart';
 
 late final Manager manager = Manager();
 
@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // String day = manager.getDay();
+    //String day = manager.getDayName();
     String day = "Montag";
     Day? dayLayout = manager.getDayLayout(day);
 
