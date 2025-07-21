@@ -34,6 +34,14 @@ class Manager {
           "Schrägbankdrücken":   ["0", "0", "0", "0", "0"],
           "Sitzend Bankdrücken": ["0", "0", "0", "0", "0"],
           "Kabelzug Butterflys": ["0", "0", "0", "0", "0"],
+        },
+        "Mittwoch": {
+          "Curls":               ["0", "0", "0", "0", "0"],
+          "Hammercurls":         ["0", "0", "0", "0", "0"],
+          "Freihantelcurls":     ["0", "0", "0", "0", "0"],
+          "Triceps Stangen Dips":["0", "0", "0", "0", "0"],
+          "Triceps Seil Dips":   ["0", "0", "0", "0", "0"],
+          "Sitzend Trizeps Dips":["0", "0", "0", "0", "0"],
         }
       };
       _file.writeAsStringSync(jsonEncode(data));
