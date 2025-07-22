@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //String day = manager.getDayName();
-    String day = "Montag";
+    String day = "Mittwoch";
     Day? dayLayout = manager.getDayLayout(day);
 
     return Scaffold(
