@@ -25,6 +25,7 @@ class Manager {
     _day = setDayName();
   }
 
+  // ACHTUNG MUSS DIE FILE LÖSCHEN UM SIE ZU AKTUALISIEREN
   void _initJson() {
     if (!_file.existsSync()) {
       Map<String, dynamic> data = {
@@ -77,15 +78,16 @@ class Manager {
       'Sonntag',
     ];
     int today = DateTime.now().weekday;
-    return days[today - 1];
+    // return days[today - 1];
+    return "Montag";
   }
 
   String getDayName() {
     return _day;
   }
 
-  Day? getDayLayout(String day) {
-    final Map<String, dynamic>? dayEx = _data[day];
+  Day? getDayLayout() {
+    final Map<String, dynamic>? dayEx = _data[_day];
     final List<ExerciseCard> exercises = [];
 
     if (dayEx == null) return null;

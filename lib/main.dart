@@ -39,9 +39,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //String day = manager.getDayName();
-    String day = "Mittwoch";
-    Day? dayLayout = manager.getDayLayout(day);
+    Day? dayLayout = manager.getDayLayout();
 
     return Scaffold(
       body: Center(
@@ -51,7 +49,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 20),
               Text(
-                day,
+                manager.getDayName(),
                 style: TextStyle(
                   fontSize: 18,
                   color: Theme.of(context).colorScheme.onSurface,
