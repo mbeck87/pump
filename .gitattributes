@@ -1,13 +1,17 @@
-# Bevorzuge Dart als Sprache
+# Bevorzuge Dart als Hauptsprache
 *.dart linguist-language=Dart
 
-# Ignoriere native C++-Dateien bei der Analyse
+# Ignoriere native C++-Dateien bei der Sprachanalyse
 *.cpp linguist-vendored
 *.h linguist-vendored
 *.cc linguist-vendored
 *.cxx linguist-vendored
 
-# Falls C++-Abhängigkeiten im `build/` oder `native/`-Ordner sind
-/native/* linguist-vendored
-/build/* linguist-vendored
-
+# Ignoriere bestimmte systemnahe Ordner
+/android/** linguist-vendored
+/ios/** linguist-vendored
+/linux/** linguist-vendored
+/macos/** linguist-vendored
+/windows/** linguist-vendored
+/build/** linguist-vendored
+.native/** linguist-vendored
