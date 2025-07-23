@@ -79,5 +79,5 @@ Das bedeutet: freie Nutzung, Veränderung und Weiterverbreitung – bitte mit Ve
 
 ## 👤 Entwickler
 
-**@mbeck87** – Entwicklung & Idee  
+**@mbeck87** – Entwicklung, Idee, Wartung
 👉 [GitHub-Profil](https://github.com/mbeck87)
